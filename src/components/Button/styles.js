@@ -2,8 +2,10 @@ import { StyleSheet } from 'react-native';
 import { colors } from 'src/config';
 
 export default StyleSheet.create({
-  textDefault: {
-    color: colors.text,
-    fontFamily: 'Roboto',
+  container: {
+    backgroundColor: colors.redMain
+  },
+  text: {
+    color: colors.white
   }
 });

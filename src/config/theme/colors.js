@@ -12,6 +12,7 @@ export const colors = {
   yellowMain: '#E5AF2E',
 
   text: '#333333',
+  textHolder: '#999999',
   border: '#D6D6D6',
 
   mainTabBar: {

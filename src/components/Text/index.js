@@ -13,5 +13,5 @@ export class Text extends Component {
 }
 
 Text.propTypes = {
-  style: PropTypes.string
+  style: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 };

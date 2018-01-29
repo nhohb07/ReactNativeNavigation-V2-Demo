@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Tab, Tabs } from 'native-base';
-import Navigation from 'react-native-navigation';
 
 import { Scene } from 'src/components';
 import AppIcon from 'src/utils/Icon';
@@ -9,15 +8,14 @@ import AppIcon from 'src/utils/Icon';
 import { Calculation } from './scenes';
 
 import styles from './styles';
+import { colors } from 'src/config';
 
 const NUMBER_OF_TABS = 5;
 const tabList = Array(NUMBER_OF_TABS).fill();
 
 class Calculator extends Scene {
-  constructor(props) {
-    super(props);
-
-    Navigation.setOptions(this.props.componentId, {
+  static get options() {
+    return {
       topBar: {
         title: 'Calculator',
         noBorder: true,
@@ -25,25 +23,58 @@ class Calculator extends Scene {
           {
             id: 'MORE_BUTTON',
             icon: AppIcon.get('md-more'),
-            tintColor: 'white'
+            tintColor: colors.white
           },
           {
             id: 'CLEAR_BUTTON',
             icon: AppIcon.get('ios-trash'),
-            tintColor: 'white'
+            tintColor: colors.white
           }
         ]
       }
-    });
-  }
-
-  onNavigationButtonPressed(id) {
-    if (id === 'CLEAR_BUTTON') {
-      alert('clear');
     }
   }
 
-  renderTabBar = (tabsData) => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeTabIndex: 0,
+      actionName: null
+    };
+  }
+
+  /**
+   * Handle Navigation buttons press
+   * This method will automatic active when press buttons on Navigation
+   * @param {string} id 
+   */
+  onNavigationButtonPressed(id) {
+    if (id === 'CLEAR_BUTTON') {
+      this.setState({ actionName: 'clearData' });
+    }
+  }
+
+  /**
+   * Handle tab change
+   */
+  _onChangeTab = (data) => {
+    this.setState({
+      activeTabIndex: data.i
+    });
+  }
+
+  /**
+   * Handle update state from Child component
+   */
+  _updateState = (state) => {
+    this.setState({ ...state });
+  }
+
+  /**
+   * Render for Tabbar
+   */
+  _renderTabBar = (tabsData) => {
     return (
       <View style={styles.tabbarContainer}>
         {
@@ -58,12 +89,21 @@ class Calculator extends Scene {
     );
   }
 
+  /**
+   * Render for Scene
+   */
   render() {
+    const {
+      activeTabIndex,
+      actionName
+    } = this.state;
+
     return (
       <Tabs
         style={styles.tabContainer}
         tabBarUnderlineStyle={styles.tabUnderlineStyle}
-        renderTabBar={this.renderTabBar}
+        renderTabBar={this._renderTabBar}
+        onChangeTab={this._onChangeTab}
       >
         {
           tabList.map((item, index) => (
@@ -71,7 +111,13 @@ class Calculator extends Scene {
               heading={`Tab ${index}`}
               key={index}
             >
-              <Calculation />
+              <Calculation
+                tabItemIndex={index}
+                activeTabIndex={activeTabIndex}
+                actionName={actionName}
+                isActive={activeTabIndex === index}
+                updateState={this._updateState}
+              />
             </Tab>
           ))
         }

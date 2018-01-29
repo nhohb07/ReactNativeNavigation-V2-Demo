@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, TextInput } from 'react-native';
-import { Text } from 'src/components';
+import { Text, Input } from 'src/components';
 
 import styles from './styles';
 
@@ -12,6 +12,12 @@ export class FormItem extends Component {
     this.state = {
       value: props.value || null
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      value: nextProps.value
+    });
   }
 
   _renderLabel() {
@@ -31,12 +37,13 @@ export class FormItem extends Component {
     const { style, inputStyle } = this.props;
 
     return (
-      <View style={style}>
+      <View style={[styles.container, style]}>
         {this._renderLabel()}
 
-        <TextInput
+        <Input
+          {...this.props}
           value={this.state.value}
-          style={[styles.input, inputStyle]}
+          style={inputStyle}
         />
       </View>
     );

@@ -4085,9 +4085,9 @@ react-native-keyboard-aware-scroll-view@0.4.2:
     prop-types "^15.6.0"
     react-native-iphone-x-helper "^1.0.1"
 
-react-native-navigation@^2.0.2104:
-  version "2.0.2104"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2104.tgz#b5897f03b831f903f4890f79c85c118675c012f5"
+react-native-navigation@^2.0.2106:
+  version "2.0.2106"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2106.tgz#3dc7ed06b2737a517d7d95fa512f59c374b6fb2f"
   dependencies:
     lodash "4.x.x"
     prop-types "15.x.x"

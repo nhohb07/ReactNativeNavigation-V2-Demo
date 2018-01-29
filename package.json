@@ -19,7 +19,7 @@
     "native-base": "^2.3.7",
     "react": "16.2.0",
     "react-native": "^0.52.1",
-    "react-native-navigation": "^2.0.2104",
+    "react-native-navigation": "^2.0.2106",
     "react-native-vector-icons": "^4.5.0"
   },
   "devDependencies": {

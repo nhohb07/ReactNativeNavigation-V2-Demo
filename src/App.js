@@ -1,4 +1,5 @@
 import Navigation from 'react-native-navigation';
+
 import registerScreens from './scenes';
 import mainTabBar from 'src/config/navigation/mainTabBar';
 

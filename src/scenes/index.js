@@ -1,5 +1,6 @@
 import Navigation from 'react-native-navigation';
 
+// Scenes
 import Calculator from './Calculator';
 
 import Deal from './Deal';

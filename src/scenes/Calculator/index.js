@@ -112,6 +112,7 @@ class Calculator extends Scene {
               key={index}
             >
               <Calculation
+                parentComponentId={this.props.componentId}
                 tabItemIndex={index}
                 activeTabIndex={activeTabIndex}
                 actionName={actionName}

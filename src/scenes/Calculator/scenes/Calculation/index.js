@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Content } from 'native-base';
+import Navigation from 'react-native-navigation';
 import { FormItem, Button } from 'src/components';
 
 import _ from 'lodash';
 
-import styles from './styles';
+// import styles from './styles';
 
 const initialState = {
   email: 'nhohuynh@vinasource.com',
@@ -32,19 +33,21 @@ export class Calculation extends Component {
   }
 
   render() {
+    const { email, username, password } = this.state;
+
     return (
       <Content padder>
         <FormItem
           label="Email"
           placeholder="Enter your email"
-          value={this.state.email}
+          value={email}
           onChangeText={(email) => this.setState({ email })}
         />
 
         <FormItem
           label="Username"
           placeholder="Enter your username"
-          value={this.state.username}
+          value={username}
           onChangeText={(username) => this.setState({ username })}
         />
 
@@ -58,6 +61,18 @@ export class Calculation extends Component {
         <Button
           text='Sign up'
           block
+          onPress={() => {
+            Navigation.push(this.props.parentComponentId, {
+              component: {
+                name: 'NewDeal',
+                passProps: {
+                  email,
+                  username,
+                  password
+                }
+              }
+            });
+          }}
         />
       </Content>
     );

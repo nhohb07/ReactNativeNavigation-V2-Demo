@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import Navigation from 'react-native-navigation';
 
-import { Scene } from 'src/components';
+import { Scene, Text, Button } from 'src/components';
 
 export default class NewDeal extends Scene {
   constructor(props) {
@@ -25,18 +25,18 @@ export default class NewDeal extends Scene {
     });
   }
 
-  onNavigationButtonPressed(id) {
-    if (id === 'BACK_BUTTON') {
-      alert('back');
-    }
-  }
-
   render() {
     return (
       <View>
-        <TouchableOpacity onPress={() => this.switchToTab(0)}>
-          <Text>To Calculator</Text>
-        </TouchableOpacity>
+        <Text>Your Info:</Text>
+        <Text>Email: {this.props.email}</Text>
+        <Text>Username: {this.props.username}</Text>
+
+        <Button
+          text='Save'
+          block
+          onPress={() => this.switchToTab(1)}
+        />
       </View>
     );
   }
